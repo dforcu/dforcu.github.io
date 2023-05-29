@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lotto game</title>
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+    <body>
+        <div class="top">
+
+            <h1>Lotto game</h1>
+        </div>
+        
+
+        
+        <div class="rule">
+            <hr>
+            <h3>RULES:</h3>
+            <p>輸入3個1~10的號碼並按下開獎按鈕，全部對中時為頭獎、2 個號碼對中為貳獎、1 個號碼對中為參獎</p>
+            <p>頭獎獎金為三萬</p>
+            <p>貳獎獎金為兩萬</p>
+            <p>參獎獎金為一萬</p>
+
+            <hr>
+        </div>
+
+        <img src="image/截圖 2023-05-29 下午4.30.02.png">
+
+
+
+
+
+        第一個數字：
+        <input  id="input1" type="number" placeholder="input a number">
+        <br><br>
+        第二個數字：
+        <input id="input2" type="number" placeholder="input a number">
+        <br>
+        <br>
+        第三個數字：
+        <input id="input3" type="number" placeholder="input a number">
+        <br><br>
+        <button class="btn1" onclick="check()">開獎</button>
+        <button class="btn2" onclick="reset()">reset</button>
+        <p id="result"></p>
+
+        <br>
+        <br>
+
+        <p class="warn"><strong>!勿沈迷賭博!</strong></p>
+    
+        <a href="https://unrealistic32.medium.com/%E8%B3%AD%E5%8D%9A%E6%88%90%E7%99%AE%E5%9C%98%E9%AB%94%E5%BF%83%E7%90%86%E6%B2%BB%E7%99%821-%E9%82%81%E5%90%91%E6%88%92%E8%B3%AD%E4%B9%8B%E8%B7%AF-f823a1edb53c" target="_blank">戒毒相關文章</a>
+
+        <p id="lonum1"></p>
+        <p id="lonum2"></p>
+        <p id="lonum3"></p>
+
+        <script>
+        //   第一二五小題
+
+
+            function check()
+            {
+
+
+                let num1=document.getElementById("input1").value;
+                let num2=document.getElementById("input2").value;
+                let num3=document.getElementById("input3").value;
+
+                if(num1==num2|num2==num3|num1==num3)
+                {
+                    alert("不能輸入重複的數字");
+                    reset();
+                }
+                
+
+                if(num1>10|num2>10|num3>10)
+                {
+                    alert("超出範圍");
+                    reset();
+                }
+
+                var time=0
+
+                var lonum1=Math.floor(Math.random() * 10) + 1;
+                var lonum2=Math.floor(Math.random() * 10) + 1;
+                var lonum3=Math.floor(Math.random() * 10) + 1;
+                
+                while (lonum1==lonum2) {
+                    var lonum2=Math.floor(Math.random() * 10) + 1;
+                }
+
+                while (lonum3==lonum1|lonum3==lonum2) {
+                    var lonum3=Math.floor(Math.random() * 10) + 1;
+                }//確認產出不同數字
+
+                if(num1==lonum1|num1==lonum2|num1==lonum3){
+                    time++;
+                }
+
+                if(num2==lonum1|num2==lonum2|num2==lonum3){
+                    time++;
+                }
+                if(num3==lonum1|num3==lonum2|num3==lonum3){
+                    time++;
+                }
+
+                if(time==0){
+                    text="哭哭，沒中獎"
+                }
+                
+                if(time==1){
+                    text="中參獎，獎金為一萬"
+                }
+
+                if(time==2){
+                    text="中貳獎，獎金為兩萬"
+                }
+
+                if(time==3){
+                    text="中頭獎，獎金為三萬"
+                }
+
+                document.getElementById("result").innerHTML=text;
+                document.getElementById("lonum1").innerHTML=lonum1;
+                document.getElementById("lonum2").innerHTML=lonum2;
+                document.getElementById("lonum3").innerHTML=lonum3;
+
+
+            }
+
+
+            function clear()
+            {
+
+                document.getElementById("input1").value = "";
+                document.getElementById("input2").value = "";
+                document.getElementById("input3").value = "";
+                document.getElementById("result").innerHTML = ""
+
+            }
+
+            function reset()//   第三小題
+            {
+                clear();
+                
+                var lonum1=Math.floor(Math.random() * 10) + 1;
+                var lonum2=Math.floor(Math.random() * 10) + 1;
+                var lonum3=Math.floor(Math.random() * 10) + 1;
+                
+                while (lonum1==lonum2) {
+                    var lonum2=Math.floor(Math.random() * 10) + 1;
+                }
+
+                while (lonum3==lonum1|lonum3==lonum2) {
+                    var lonum3=Math.floor(Math.random() * 10) + 1;
+                }//確認產出不同數字
+
+                
+                document.getElementById("result").innerHTML=text;
+                document.getElementById("lonum1").innerHTML=lonum1;
+                document.getElementById("lonum2").innerHTML=lonum2;
+                document.getElementById("lonum3").innerHTML=lonum3;
+                document.getElementById("result").innerHTML = ""
+
+
+            }
+
+        
+
+            
+
+
+
+        </script>
+
+        
+
+
+
+
+        
+        
+        
+    </body>
+</html>
